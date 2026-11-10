@@ -70,11 +70,11 @@ env:
 
 jobs:
   build:
-    runs-on: macos-15
+    runs-on: macos-15-intel
 
     strategy:
       matrix:
-        scheme: ["default", "rootless", "roothide", "bootstrap"]
+        scheme: ["bootstrap"]
 
     steps:
       - name: Checkout repository
@@ -181,7 +181,7 @@ jobs:
   release:
     if: github.event_name == 'push' && github.ref == 'refs/heads/release'
     needs: build
-    runs-on: macos-15
+    runs-on: macos-15-intel
 
     steps:
       - name: Checkout repository
