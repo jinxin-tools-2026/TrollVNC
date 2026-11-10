@@ -106,7 +106,7 @@ jobs:
       - name: Setup Xcode
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: "16.2"
+          xcode-version: "16.4"
 
       - name: Generate Managed.plist (managed build)
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.is_managed == true }}
@@ -141,7 +141,7 @@ jobs:
 
       - name: Build package (${{ matrix.scheme }})
         run: |
-          xcodebuild -downloadPlatform iOS && source devkit/${{ matrix.scheme }}.sh
+          source devkit/${{ matrix.scheme }}.sh
           FINALPACKAGE=1 gmake clean package
 
       - name: Prepare artifacts
