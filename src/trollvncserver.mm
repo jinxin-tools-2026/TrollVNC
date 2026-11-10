@@ -3764,6 +3764,10 @@ static void setupRfbServerSideCursor(void) {
         setupAlphaCursor(gScreen, 0);
         TVLog(@"Cursor: XCursor + alpha mode=2 enabled");
     } else {
+        // rfbGetScreen installs LibVNCServer's default cursor. Merely skipping
+        // setupXCursor leaves that cursor active, including rfbHideCursor's
+        // background restore path. Clear it before the event threads start.
+        rfbSetCursor(gScreen, NULL);
         TVLog(@"Cursor: disabled (default; enable with -U on)");
     }
 }
