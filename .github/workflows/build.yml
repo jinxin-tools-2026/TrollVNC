@@ -141,7 +141,7 @@ jobs:
 
       - name: Build package (${{ matrix.scheme }})
         run: |
-          source devkit/${{ matrix.scheme }}.sh
+          xcodebuild -downloadPlatform iOS && source devkit/${{ matrix.scheme }}.sh
           FINALPACKAGE=1 gmake clean package
 
       - name: Prepare artifacts
